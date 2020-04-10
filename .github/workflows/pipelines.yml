@@ -20,8 +20,6 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: 3.8
-    - name: Test compilation
-      run: make re && make fclean
     - name: Push to Epitech repo
       run: |
         ssh-keyscan git.epitech.eu >> ~/.ssh/known_hosts
