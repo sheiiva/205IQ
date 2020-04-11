@@ -1,6 +1,3 @@
-#!/usr/bin/env python3
-#coding: utf-8
-
 ############################################
 #                MATHEMATICS               #
 ############################################
@@ -13,6 +10,7 @@
 
 from math import sqrt, exp, pi
 from sys import argv
+
 
 class IQ():
 
@@ -33,7 +31,7 @@ class IQ():
             self._iq2 = int(argv[4])
 
     def normalDistribution(self, x):
-       
+
         """
         Compute the Normal Distribution of x,
             using _u the mean value and _std the standard deviation.
@@ -42,7 +40,7 @@ class IQ():
         return (1 / (self._std * sqrt(2 * pi))) * exp(-(pow(x - self._u, 2) / (2 * self._std * self._std)))
 
     def getBound(self, bmin, bmax):
-        
+
         """
         Print %percentage of poeple having an IQ between bmin and bmax.
         """
@@ -64,7 +62,7 @@ class IQ():
         Print each value of _values.
         """
 
-        for i in range (201):
+        for i in range(201):
             print("{} {:.5f}".format(i, self._values[i]))
 
     def run(self):
@@ -73,9 +71,9 @@ class IQ():
         Run computations and process output printing.
         """
 
-        for i in range (201):
+        for i in range(201):
             self._values.append(self.normalDistribution(i))
-        
+
         if (not self._iq1 and not self._iq2):
             self.plotDensityFunction()
         elif (not self._iq2):
