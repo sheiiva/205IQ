@@ -1,29 +1,58 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
 
-name: Python application
+# name: Python application
 
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+# on:
+#   push:
+#     branches: [ master ]
+#   pull_request:
+#     branches: [ master ]
+
+# jobs:
+#   build:
+
+#     runs-on: ubuntu-latest
+
+#     steps:
+#     - uses: actions/checkout@v2
+#     - name: Set up Python 3.8
+#       uses: actions/setup-python@v1
+#       with:
+#         python-version: 3.8
+#     - name: Push to Epitech repo
+#       run: |
+#         mkdir ~/.ssh
+#         ssh-keyscan git.epitech.eu >> ~/.ssh/known_hosts
+#         git remote update
+#         git fetch
+#         git push --repo="git@git.epitech.eu:/corentin.rozet@epitech.eu/205IQ_2019" --force
+
+name: Mirroring
+
+on: [push, delete]
 
 jobs:
-  build:
+  # to_gitlab:
+  #   runs-on: ubuntu-18.04
+  #   steps:                                              # <-- must use actions/checkout@v1 before mirroring!
+  #   - uses: actions/checkout@v1
+  #   - uses: pixta-dev/repository-mirroring-action@v1
+  #     with:
+  #       target_repo_url:
+  #         git@gitlab.com:<username>/<target_repository_name>.git
+  #       ssh_private_key:                                # <-- use 'secrets' to pass credential information.
+  #         ${{ secrets.GITLAB_SSH_PRIVATE_KEY }}
 
-    runs-on: ubuntu-latest
-
+  to_codecommit:                                        # <-- different jobs are executed in parallel.
+    runs-on: ubuntu-18.04
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python 3.8
-      uses: actions/setup-python@v1
+    - uses: actions/checkout@v1
+    - uses: pixta-dev/repository-mirroring-action@v1
       with:
-        python-version: 3.8
-    - name: Push to Epitech repo
-      run: |
-        mkdir ~/.ssh
-        ssh-keyscan git.epitech.eu >> ~/.ssh/known_hosts
-        git remote update
-        git fetch
-        git push --repo="git@git.epitech.eu:/corentin.rozet@epitech.eu/205IQ_2019" --force
+        target_repo_url:
+          git@git.epitech.eu:/corentin.rozet@epitech.eu/205IQ_2019
+        ssh_private_key:
+          ${{ secrets.CODECOMMIT_SSH_PRIVATE_KEY }}
+        ssh_username:                                   # <-- (for codecommit) you need to specify ssh-key-id as ssh username.
+          ${{ secrets.CODECOMMIT_SSH_PRIVATE_KEY_ID }}
