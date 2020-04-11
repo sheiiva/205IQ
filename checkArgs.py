@@ -43,6 +43,10 @@ class ArgumentManager():
             elif (i == 2 and int(argv[i]) < 0):
                 print("Wrong Standard Deviation values. Please run with -h.")
                 return 84
+        if len(argv) == 5:
+            if int(argv[3]) >= int(argv[4]):
+                print("IQ1 should be less than IQ2. Please run with -h.")
+                return 84
 
         return isNum(0)
 
