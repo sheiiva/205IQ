@@ -27,7 +27,7 @@ Your psychiatrist, **Dr. Von Humleit**, plans to create his own IQ test, which i
 ```
 
 #### DESCRIPTION
-u       mean
+u       IQ's mean
 s       standard deviation
 IQ1     minimum IQ
 IQ2     maximum IQ
