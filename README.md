@@ -23,21 +23,23 @@ Your psychiatrist, **Dr. Von Humleit**, plans to create his own IQ test, which i
 ## USAGE:
 
 ```
->> ./205IQ u s [IQ1] [IQ2]
-```
+>> ./205IQ -h
+USAGE
+    ./205IQ u s [IQ1] [IQ2]
 
-#### DESCRIPTION
-u       IQ's mean
-s       standard deviation
-IQ1     minimum IQ
-IQ2     maximum IQ
+DESCRIPTION
+    u       mean
+    s       standard deviation
+    IQ1     minimum IQ
+    IQ2     maximum IQ
+```
 
 # BONUS:
 
 > prerequisite: [`Gnuplot`](http://www.gnuplot.info/) graphical library
 
 ```
->> ./205IQ *u* *s* > data
+>> ./205IQ u s > data
 >> cat bonus/drawer.gnu | gnuplot
 ```
 
